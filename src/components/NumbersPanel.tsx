@@ -32,7 +32,10 @@ const NumbersPanel = ({ style, buttonStyle, onButtonPress, textStyle, rowStyle, 
             <NumberButton value={'9'} disabled={disabled} style={buttonStyle} textStyle={textStyle} onPress={onButtonPress} />
         </View>
         <View style={[DEFAULT.Styles.enter?.buttonRow, rowStyle]}>
-            {extraAction || <View style={[DEFAULT.Styles.enter?.button, buttonStyle, { backgroundColor: 'transparent', borderWidth: 0 }]} />}
+            {extraAction
+                ? <NumberButton value={'action'} disabled={disabled} extraAction={extraAction}
+                    style={buttonStyle} textStyle={textStyle} onPress={onButtonPress} />
+                : <View style={[DEFAULT.Styles.enter?.button, buttonStyle, { backgroundColor: 'transparent', borderWidth: 0 }]} />}
             <NumberButton value={'0'} disabled={disabled} style={buttonStyle} textStyle={textStyle} onPress={onButtonPress} />
             <NumberButton value={'delete'} disabled={disabled}
                 backSpace={backSpace} backSpaceText={backSpaceText || DEFAULT.TextOptions.set?.backSpace}

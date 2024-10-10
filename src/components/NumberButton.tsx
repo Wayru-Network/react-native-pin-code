@@ -3,17 +3,30 @@ import { Text, TextStyle, StyleProp, Pressable, ViewStyle } from 'react-native';
 import { DEFAULT } from '../common';
 
 const NumberButton = ({
-    value, style, textStyle, disabled = false, backSpace, backSpaceText, onPress, disabledStyle
+    value, style, textStyle, disabled = false, extraAction, backSpace, backSpaceText, onPress, disabledStyle
 }: {
     value: string;
     disabled?: boolean;
     backSpace?: JSX.Element;
+    extraAction?: JSX.Element;
     backSpaceText?: string;
     onPress: (number: string) => void;
     style?: StyleProp<ViewStyle>;
     textStyle?: StyleProp<TextStyle>;
     disabledStyle?: StyleProp<TextStyle>;
 }) => {
+
+    if (value == 'action' && extraAction) {
+        return <Pressable disabled={disabled} onPress={() => onPress(value)}
+            style={({ pressed }) => [
+                DEFAULT.Styles.enter?.button,
+                style,
+                { backgroundColor: 'transparent', opacity: pressed ? 0.5 : 1 },
+            ]}>
+            {extraAction}
+        </Pressable>;
+    }
+
     if (value == 'delete') {
         return <Pressable disabled={disabled} onPress={() => onPress(value)}
             style={({ pressed }) => [

@@ -5,7 +5,7 @@ import { DEFAULT } from './common';
 import NumbersPanel from './components/NumbersPanel';
 import Pin from './components/Pin';
 
-const EnterLayout = ({ pin, styles, mode, textOptions, options, onSwitchMode, onEnter, onReset, onMaxAttempt }: {
+const EnterLayout = ({ pin, styles, mode, textOptions, options, onSwitchMode, onEnter, onReset, onMaxAttempt, onPressExtraAction }: {
     pin: string | undefined;
     styles?: PinCodeT.EnterStyles;
     mode: PinCodeT.Modes;
@@ -15,6 +15,7 @@ const EnterLayout = ({ pin, styles, mode, textOptions, options, onSwitchMode, on
     onEnter: (newPin: string) => void;
     onMaxAttempt: () => void;
     onReset: () => void;
+    onPressExtraAction?: () => void;
 }) => {
     const [curPin, setCurPin] = useState('');
     const [disabled, disableButtons] = useState(false);
@@ -22,6 +23,13 @@ const EnterLayout = ({ pin, styles, mode, textOptions, options, onSwitchMode, on
     const [showError, setShowError] = useState(false);
 
     async function onNumberPress(value: string) {
+
+        if (value == 'action') {
+            if (!onPressExtraAction) return;
+            onPressExtraAction();
+            return;
+        }
+
         const newPin = (value == 'delete') ?
             (curPin.substring(0, curPin.length - 1)) :
             (curPin + value);

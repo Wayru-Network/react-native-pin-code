@@ -210,6 +210,11 @@ export namespace PinCodeT {
          * @returns 
          */
         onModeChanged?: (lastMode: Modes, newMode?: Modes) => void;
+        /**
+         * Triggered when the user presses the extra action button. This is only available in the `ENTER` mode.
+         * @returns 
+         */
+        onPressExtraAction?: () => void;
     }
 
     export enum Modes {
