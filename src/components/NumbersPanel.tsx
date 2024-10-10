@@ -3,13 +3,14 @@ import { StyleProp, TextStyle, View, ViewProps } from "react-native"
 import { DEFAULT } from "../common";
 import NumberButton from "./NumberButton";
 
-const NumbersPanel = ({ style, buttonStyle, onButtonPress, textStyle, rowStyle, disabled, backSpaceText, backSpace }: {
+const NumbersPanel = ({ style, buttonStyle, onButtonPress, textStyle, rowStyle, disabled, backSpaceText, backSpace, extraAction }: {
     buttonStyle?: StyleProp<ViewProps>;
     onButtonPress: (value: string) => void;
     style?: StyleProp<ViewProps>;
     textStyle?: StyleProp<TextStyle>;
     rowStyle?: StyleProp<TextStyle>;
     disabledStyle?: StyleProp<TextStyle>;
+    extraAction?: JSX.Element;
     backSpace?: JSX.Element;
     backSpaceText?: string;
     disabled?: boolean;
@@ -31,7 +32,7 @@ const NumbersPanel = ({ style, buttonStyle, onButtonPress, textStyle, rowStyle, 
             <NumberButton value={'9'} disabled={disabled} style={buttonStyle} textStyle={textStyle} onPress={onButtonPress} />
         </View>
         <View style={[DEFAULT.Styles.enter?.buttonRow, rowStyle]}>
-            <View style={[DEFAULT.Styles.enter?.button, buttonStyle, { backgroundColor: 'transparent', borderWidth: 0 }]} />
+            {extraAction || <View style={[DEFAULT.Styles.enter?.button, buttonStyle, { backgroundColor: 'transparent', borderWidth: 0 }]} />}
             <NumberButton value={'0'} disabled={disabled} style={buttonStyle} textStyle={textStyle} onPress={onButtonPress} />
             <NumberButton value={'delete'} disabled={disabled}
                 backSpace={backSpace} backSpaceText={backSpaceText || DEFAULT.TextOptions.set?.backSpace}

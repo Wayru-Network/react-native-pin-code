@@ -264,6 +264,10 @@ export namespace PinCodeT {
          */
         allowReset?: boolean;
         /**
+         * On Enter screen the "Extra Action" button is shown at the bottom. You can render your own component instead.
+        */
+        extraAction?: JSX.Element;
+        /**
          * On Enter/Set screen the "Delete" button is used to delete the entered digit. But you can render an icon instead.
          * @example <Icon name='backspace' size={24} />
          */

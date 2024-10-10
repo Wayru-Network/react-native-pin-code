@@ -76,7 +76,7 @@ const EnterLayout = ({ pin, styles, mode, textOptions, options, onSwitchMode, on
                 pinStyle={[DEFAULT.Styles.enter?.pin, styles?.pin]}
                 enteredPinStyle={[DEFAULT.Styles.enter?.enteredPin, styles?.enteredPin]} />
 
-            <NumbersPanel disabled={disabled} onButtonPress={onNumberPress}
+            <NumbersPanel disabled={disabled} onButtonPress={onNumberPress} extraAction={options?.extraAction}
                 backSpace={options?.backSpace} backSpaceText={textOptions.enter?.backSpace}
                 buttonStyle={styles?.button} rowStyle={styles?.buttonRow} style={styles?.buttonContainer}
                 textStyle={styles?.buttonText} disabledStyle={styles?.buttonTextDisabled}
